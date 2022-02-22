@@ -4,6 +4,7 @@
         <title>Alan's personal website</title> <!-- Nombre de mi página -->
         <link rel="stylesheet" href="styles.css">
         <meta charset="UTF-8"> <!-- Set de caracteres especiales -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <h1 align="center">¡Bienvenidos a mi sitio web!</h1> <!-- H1 a H6 son encabezados (heading)-->
@@ -83,10 +84,58 @@
           <p>Porque el archivo no minimizado de CSS cuenta con michos espacios y saltos de linea. Y en una versión minimizada, esto se elimina y por lo tanto se puede visualizar de una manera más óptima la página web.</p>
         </article>
 
+        <article>
+            <h2>Preguntas JS:</h2>
+            <strong>¿Qué diferencias y semejanzas hay entre Java y JavaScript?</strong>
+            <p>Java es un lenguaje POO, mientras que JavaScript es es un script basado en objetos. 
+                Java es más estricto en terminos de lenguaje que javascript. 
+                Java necesita un compilador para correr, mientras que en JavaScript se va executando en el momento.
+                Tienen las mismas estructuras de control.
+                 </p>
+            <strong>¿Qué métodos tiene el objeto Date?</strong>
+                 <ul>
+                     <li>setMonth()</li>
+                     <li>setSeconds()</li>
+                     <li>getFullYear()</li>
+                     <li>getDate()</li>
+                     <li>toTimeString()</li>
+                 </ul>
+            <strong>¿Qué métodos tienen los arreglos?</strong>
+                 <ul>
+                     <li>push()</li>
+                     <li>pop()</li>
+                     <li>Array.of()</li>
+                     <li>Array.from()</li>
+                     <li>shift()</li>
+                 </ul>
+            <strong>¿Cómo se declara una variable con alcance local dentro de una función?</strong>
+            <p>Con la declaración var, solamente están disponibles dentro de la función en que son 
+                creadas, o si son creadas fuera de la función y tengan un alcance global.</p>
+            <strong>¿Qué implicaciones tiene utilizar variables globales dentro de funciones?</strong>
+            <p>Que estas puedan ser accesadas desde cualquier parte del programa por lo que su valor puede ser comprometido 
+                y alterar la funcion que recibe dicha variable.
+            </p>
+        </article>
+
+        <article>
+            <h2>Bibliografías:</h2>
+            <p>https://www.geeksforgeeks.org/difference-between-java-and-javascript/</p>
+            <p></p>
+        </article>
+
         <button class="button button2">Volver al inicio</button>
 
         <footer>
-            <p>Alan Razo @2022</p>
+            <p>Alan <span id="Razo" onclick="muestra_imagen()">Razo</span> @2022</p>
+            <div id="imagen_portero"></div>
+            <div>
+                <label for="jugador">Escribe el nombre de un jugador:</label>
+                <input id="jugador" type="text">
+                <div id="respuesta"></div>
+            </div>
+
+            <button id="muestra_foto">Ver foto de Alan</button>
+            <div id="foto_alan"></div>
         </footer>
         <script src="js.js"></script>
     </body>
