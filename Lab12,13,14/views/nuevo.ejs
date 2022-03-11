@@ -1,0 +1,18 @@
+<%- include('includes/head.ejs') %>
+    <h1>Bienvenido a este sitio de caballos</h1>
+    <main>
+        <h2>Aquí se habla se de nuevos caballos</h2>
+        <p><%= nombre %>, ingresa los datos del nuevo caballo:</p>
+        <form action="/caballos/nuevo" method="POST">
+            <label for="nombre">Nombre del nuevo caballo: </label>
+            <input type="text" name="nombre" required>
+            <label for="descripcion">Descipción: </label>
+            <input type="text" id="descripcion" name="descripcion" placeholder="Le gusta la piña">
+            <label for="Imagen">Imagen: </label>
+            <input type="text" id="imagen" name="imagen" placeholder="https://s2.coinmarketcap.com/static/img/coins/200x200/16636.png">
+            <input type="submit" value="Enviar">
+        </form>
+        <br><br>
+        <a href="/caballos/">Regresar a la lista de caballos</a>
+    </br>
+<%- include('includes/foot.ejs') %>

@@ -1,0 +1,37 @@
+<%- include('includes/head.ejs') %>
+    <h1>Bienvenido a este sitio de caballos chidos</h1>
+    <main>
+        <h2>Aquí se habla de caballos</h2>
+        <p>Estos son nuestros caballos:</p>
+        <div class="row">
+        <% if (caballos.length > 0) { %>
+                <% for (let caballo of caballos) { %>
+                    <div class="col s12 m4 l3">
+                        <div class="card small">
+                            <div class="card-image waves-effect waves-block waves-light">
+                            <img class="activator" src="<%= caballo.imagen %>">
+                            </div>
+                            <div class="card-content">
+                            <span class="card-title activator grey-text text-darken-4"><%= caballo.nombre %><i class="material-icons right">more_vert</i></span>
+                            <p><%= capybara.created_at %></p>
+                            <p><a href="#">This is a link</a></p>
+                            </div>
+                            <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4"><%= caballo.nombre %><i class="material-icons right">close</i></span>
+                            <p><%= capybara.descripcion %></p>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+        <% } else { %>
+            <h3>No tenemos caballos</h3>
+        <% } %>   
+        </div>
+        <% if (ultimo_caballo != '') { %>
+            <br>
+            <p>El último caballo agregado fue: <%= ultimo_caballo %></p>
+        <% } %>
+        <a href="/caballos/nuevo">
+            <i class="material-icons">add</i> Agregar un nuevo caballo</a>
+    </main>
+<%- include('includes/foot.ejs') %>
