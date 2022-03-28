@@ -5,6 +5,8 @@ const session = require('express-session');
 const rutas_usuarios = require('./routes/auth.routes');
 const rutas_caballos = require('./routes/caballos.routes');
 const path = require('path');
+const csrf = require('csurf');
+const csrfProtection = csrf();
 
 const app = express();
 
@@ -21,6 +23,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+
+app.use(csrfProtection);
+app.use((request, response, next) => {
+    response.locals.csrfToken = request.csrfToken();
+    next();
+});
 
 app.use('/users', rutas_usuarios);
 app.use('/caballos', rutas_caballos);
