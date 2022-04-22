@@ -9,4 +9,10 @@ router.post('/login', usersController.login);
 
 router.get('/logout', usersController.logout);
 
+router.get('/signup', isAuth, usersController.get_signup);
+
+router.post('/signup', usersController.post_signup);
+
+router.get('/view/:id', usersController.get_view);
+
 module.exports = router;

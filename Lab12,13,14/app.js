@@ -6,7 +6,7 @@ const rutas_usuarios = require('./routes/auth.routes');
 const rutas_caballos = require('./routes/caballos.routes');
 const path = require('path');
 const csrf = require('csurf');
-const multer = ('multer');
+const multer = require('multer');
 
 const app = express();
 
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'uploads')));
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(cookieParser());
+
 
 //fileStorage: Es nuestra constante de configuración para manejar el almacenamiento
 const fileStorage = multer.diskStorage({
@@ -37,12 +37,14 @@ const fileStorage = multer.diskStorage({
     filename: (request, file, callback) => {
         //aquí configuramos el nombre que queremos que tenga el archivo en el servidor, 
         //para que no haya problema si se suben 2 archivos con el mismo nombre concatenamos el timestamp
-        callback(null, new Date().toISOString() + '-' + file.originalname);
+        callback(null, new Date().getTime() + '-' + file.originalname);
     },
 });
 app.use(multer({ storage: fileStorage }).single('imagen')); 
 
-app.use(csrfProtection);
+app.use(cookieParser());
+
+app.use(csrfProtection); 
 app.use((request, response, next) => {
     response.locals.csrfToken = request.csrfToken();
     next();
@@ -73,4 +75,4 @@ app.use((request, response, next) => {
     response.send('¡Hola mundo!'); //Manda la respuesta
 });
 
-app.listen(3000);
+app.listen(5151); 
