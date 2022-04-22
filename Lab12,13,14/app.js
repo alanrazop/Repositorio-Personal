@@ -6,9 +6,10 @@ const rutas_usuarios = require('./routes/auth.routes');
 const rutas_caballos = require('./routes/caballos.routes');
 const path = require('path');
 const csrf = require('csurf');
-const csrfProtection = csrf();
 
 const app = express();
+
+const csrfProtection = csrf();
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -22,7 +23,22 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 app.use(cookieParser());
+
+//fileStorage: Es nuestra constante de configuración para manejar el almacenamiento
+const fileStorage = multer.diskStorage({
+    destination: (request, file, callback) => {
+        //'uploads': Es el directorio del servidor donde se subirán los archivos 
+        callback(null, 'uploads');
+    },
+    filename: (request, file, callback) => {
+        //aquí configuramos el nombre que queremos que tenga el archivo en el servidor, 
+        //para que no haya problema si se suben 2 archivos con el mismo nombre concatenamos el timestamp
+        callback(null, new Date().toISOString() + '-' + file.originalname);
+    },
+});
+app.use(multer({ storage: fileStorage }).single('imagen')); 
 
 app.use(csrfProtection);
 app.use((request, response, next) => {

@@ -7,12 +7,13 @@ module.exports = class Caballo {
         this.nombre = nuevo_nombre;
         this.descripcion = nueva_descripcion;
         this.imagen = nueva_imagen;
+        this.duenio_id = nuevo_duenio_id;
     }
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        return db.execute('INSERT INTO caballos (nombre, descripcion, imagen) VALUES (?, ?, ?)', 
-            [this.nombre, this.descripcion, this.imagen]);
+        return db.execute('INSERT INTO caballos(nombre, descripcion, imagen, duenio_id) VALUES (?,?,?,?)',
+        [this.nombre, this.descripcion, this.imagen, this.duenio_id]);
     }
 
     //Este método servirá para devolver los objetos del almacenamiento persistente.

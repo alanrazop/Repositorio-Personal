@@ -1,5 +1,6 @@
 const path = require('path');
 const Caballo = require('../models/caballo');
+const User = require('../models/user');
 
 
 exports.milagro = (request, response, next) => {
@@ -8,64 +9,57 @@ exports.milagro = (request, response, next) => {
 
 exports.listar = (request, response, next) => {
     console.log(request.body);
-    //console.log(request.get('Cookie').split('=')[1]);
+    console.log(request.get('Cookie').split('=')[1]);
     console.log(request.cookies);
-    const info = request.session.info ? request.session.info : '';
-    request.session.info = '';
-
     Caballo.fetchAll()
-        .then(([rows, fieldData]) => {
-            console.log(rows);
+        .then(([caballos, fieldData])=>{
             response.render('lista', {
-                caballos: rows,
-                ultimo_caballo: request.cookies.ultimo_caballo ? request.cookies.ultimo_caballo: '',
-                usuario: request.session.usuario ? request.session.usuario: '', 
-                info: info
-            }); 
-        })
-        .catch(err => {
-            console.log(err);
+                caballos: caballos,
+                ultimo_caballo: request.cookies.ultimo_caballo,
+                usuario: request.session.usuario       
+            });
+        }).catch((error)=>{
+            console.log(error);
         });
-}
+};
 
 exports.get_nuevo = (request, response, next) => {
     console.log(request.body);
-    response.render('nuevo', {
-        nombre: 'Alan',
-        usuario: request.session.usuario  
-    });
+    User.fetchAll()
+        .then(([duenios, fieldData])=>{
+            response.render('nuevo', {
+                nombre: 'Alan',
+                usuario: request.session.usuario,
+                duenios: duenios,
+            });
+        })
+        .catch((error)=>{
+            console.log(error);
+        });
 };
 
 exports.post_nuevo = (request, response, next) => {
     console.log(request.body);
-    const caballo = new Caballo(request.body.nombre, request.body.descripcion, request.body.imagen);
+    console.log(request.file);
+    const caballo = 
+        new Caballo(
+            request.body.nombre, request.body.descripcion, 
+            '/'+request.file.filename, request.body.duenio_id);
     caballo.save()
-        .then(() => {
+        .then(()=>{
             response.setHeader('Set-Cookie', 'ultimo_caballo='+caballo.nombre );
             response.redirect('/caballos/');
-        })
-    .catch(err => {
-        console.log(err);
-    });
+        }).catch((error)=>{
+            console.log(error);
+        });
+    
 };
 
-exports.filtrar = (request, response, next) => {
-    console.log(request.params.caballo_id);
-    //console.log(request.get('Cookie').split('=')[1]);
-    console.log(request.cookies);
-    const info = request.session.info ? request.session.info : '';
-    request.session.info = '';
-    Caballo.fetchOne(request.params.caballo_id)
+exports.get_buscar = (request, response, next) => {
+    Caballo.fetch(request.params.criterio)
         .then(([rows, fieldData]) => {
-            console.log(rows);
-            response.render('lista', {
-                caballos: rows,
-                ultimo_caballo: request.cookies.ultimo_caballo ? request.cookies.ultimo_caballo: '',
-                usuario: request.session.usuario ? request.session.usuario: '', 
-                info: info //El primer info es la variable del template, el segundo la constante creada arriba
-            }); 
-        })
-        .catch(err => {
-            console.log(err);
-        }); 
+            response.status(200).json(rows);
+        }).catch(error => {
+            console.log(error);
+        });
 }
