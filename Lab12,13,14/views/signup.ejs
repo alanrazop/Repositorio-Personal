@@ -1,14 +1,18 @@
 <%- include('includes/head.ejs') %>
-    <h1>Este es el sitio administrativo de caballos </h1>
+    <h1>Este es el sitio administrativo de caballos</h1>
     <main>
-        <h2>Aquí se habla se de nuevos caballos</h2>
-        <p>Ingresa los datos del nuevo usuario</p>
-        <form action="/users/login" method="POST">
-            <label for="nombre">Nombre de usuario: </label>
+        <p>Ingresa los datos del nuevo usuario:</p>
+        <form action="/users/signup" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <label for="nombre">Nombre completo del nuevo usuario: </label>
             <input type="text" name="nombre" required>
-            <label for="passwd">Constraseña: </label>
-            <input type="password" name="passwd" required>
+            <label for="username">Nombre del nuevo usuario: </label>
+            <input type="text" name="username" required>
+            <label for="password">Password del nuevo usuario: </label>
+            <input type="password" name="password" required>
             <input type="submit" value="Enviar">
         </form>
-    </br><br><br><br><br>
+        <br><br>
+        <a href="/caballos/">Regresar a la lista de caballos</a>
+    </br>
 <%- include('includes/foot.ejs') %>
