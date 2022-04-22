@@ -3,7 +3,7 @@ const db = require('../util/database');
 module.exports = class Caballo {
 
     //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
-    constructor(nuevo_nombre, nueva_descripcion, nueva_imagen) {
+    constructor(nuevo_nombre, nueva_descripcion, nueva_imagen, nuevo_duenio_id) {
         this.nombre = nuevo_nombre;
         this.descripcion = nueva_descripcion;
         this.imagen = nueva_imagen;
@@ -12,7 +12,8 @@ module.exports = class Caballo {
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        return db.execute('INSERT INTO caballos(nombre, descripcion, imagen, duenio_id) VALUES (?,?,?,?)',
+        return db.execute(
+        'INSERT INTO caballos(nombre, descripcion, imagen, duenio_id) VALUES (?,?,?,?)',
         [this.nombre, this.descripcion, this.imagen, this.duenio_id]);
     }
 
@@ -21,8 +22,10 @@ module.exports = class Caballo {
         return db.execute('SELECT * FROM caballos');
     }
 
-    static fetchOne(caballo_id){
-        return db.execute('SELECT * FROM caballos WHERE id=?', [caballo_id]);
+    static fetch(criterio) {
+        return db.execute(
+            'SELECT * FROM caballos WHERE nombre LIKE ? OR descripcion LIKE ? OR duenio_id LIKE ?',
+            ['%'+criterio+'%', '%'+criterio+'%', '%'+criterio+'%']);
     }
 
 }
