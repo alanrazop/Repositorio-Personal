@@ -6,6 +6,7 @@ const rutas_usuarios = require('./routes/auth.routes');
 const rutas_caballos = require('./routes/caballos.routes');
 const path = require('path');
 const csrf = require('csurf');
+const multer = ('multer');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(session({
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
