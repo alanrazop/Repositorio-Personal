@@ -1,8 +1,8 @@
 <%- include('includes/head.ejs') %>
-    <h1>Bienvenido a este sitio de caballos</h1>
+    <h1>El establo de Alan</h1>
     <main>
-        <h2>Aquí se habla se de nuevos caballos</h2>
-        <p>Ingresa tus credenciales de acceso:</p>
+        <h2>¡Guarda tus caballos en un solo lugar!</h2>
+        <p>Inicia sesión:</p>
         <form action="/users/login" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <label for="nombre">Nombre de usuario: </label>

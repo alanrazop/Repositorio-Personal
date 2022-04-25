@@ -1,10 +1,10 @@
 <%- include('includes/head.ejs') %>
-    <h1>Bienvenido a este sitio de caballos chidos</h1>
+    <h1>¡Bienvenido al establo virtual!</h1>
     <main>
-        <h2>Aquí se habla de caballos</h2>
-        <label for="buscar">Buscar:</label>
+        <h3>Aquí puedes almacenar los caballos que quieras...</h3>
+        <label for="buscar">Busca a tu caballo:</label>
         <input type="text" id="buscar" name="buscar">
-        <p>Estos son nuestros caballos:</p>
+        <p>Estos son tus caballos:</p>
         <div class="row" id="busqueda_ajax">
         <% if (caballos.length > 0) { %>
                 <% for (let caballo of caballos) { %>
@@ -25,7 +25,7 @@
                     </div>
                 <% } %>
         <% } else { %>
-            <h3>No tenemos caballos</h3>
+            <h3>No hay caballos</h3>
         <% } %>   
         </div>
 
@@ -36,12 +36,12 @@
             <p>El último caballo agregado fue: <%= ultimo_caballo %></p>
         <% } %>
         <a href="/caballos/nuevo">
-            <i class="material-icons">add</i> Agregar un nuevo caballo</a>
+            <i class="material-icons">add_circle</i> Agregar un nuevo caballo</a>
     </main>
 
 <script>
 const busqueda_asincrona = () => {
-    const valor_busqueda = document.getElementById('buscar').value;
+    const valor_busqueda = document.getElementById("buscar").value;
 
     //funcion que manda la peticion asincrona
     fetch('/caballos/buscar'+valor_busqueda, {
@@ -50,7 +50,7 @@ const busqueda_asincrona = () => {
             'Content-Type': 'application/json',
         }
     }).then(result => {
-        return result.json()//regresa otra promesa
+        return result.json();//regresa otra promesa
     }).then(data => {
         console.log(data);
         //modificamos el dom de nuestra pagina de acuerdo a los datos de la segunda promesa
@@ -83,7 +83,7 @@ const busqueda_asincrona = () => {
     });   
 };
 
-document.getElementById('buscar').onkeyup = busqueda_asincrona;
+document.getElementById("buscar").onkeyup = busqueda_asincrona;
 
 const accion_asincrona = (e) => {
     console.log(e.target.dataset.duenio);

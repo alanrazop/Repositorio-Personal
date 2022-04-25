@@ -1,8 +1,8 @@
 <%- include('includes/head.ejs') %>
-    <h1>Bienvenido a este sitio de caballos</h1>
+    <h1>Creador virtual de caballos</h1>
     <main>
-        <h2>Aquí se habla se de nuevos caballos</h2>
-        <p><%= nombre %>, ingresa los datos del nuevo caballo:</p>
+        <h2>Aquí puedes crear un nuevo caballo para tu establo:</h2>
+        <p><%= nombre %>, por favor ingresa los datos del nuevo caballo:</p>
         <form action="/caballos/nuevo" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <label for="nombre">Nombre del nuevo caballo</label>
@@ -22,7 +22,10 @@
                 </select>
                 <label>Materialize Select</label>
               </div>
-            <input type="submit" value="Enviar">
+              <button class="btn waves-effect waves-light" type="submit" value="Enviar">Submit
+                <i class="material-icons right">send</i>
+              </button>
+      
         </form>
         <br><br>
         <a href="/caballos/">Regresar a la lista de caballos</a>
