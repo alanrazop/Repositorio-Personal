@@ -11,5 +11,10 @@ router.get('/hello', (request, response, next) => {
     response.sendFile(path.join(__dirname, '..', 'views', 'index.html'));
 });
 
+//desplegar EJS
+router.get('/nuevo', (request, response, next) => {
+    response.render('nuevo_soldado');
+});
+
 
 module.exports = router;
