@@ -1,13 +1,15 @@
 <%- include('includes/head.ejs') %>
-<h1>¡Ingresa un nuevo soldado para el nuevo imperio!</h1>
-<main>
+    <h1>¡Ingresa un nuevo soldado para el nuevo imperio!</h1>
+    <main>
     <h2>La Orden Final</h2>
     <p><%= nombre %>, ingresa a un nuevo soldado:</p>
     <form action="/imperio/nuevo" method="POST">
         <label for="nombre">Nombre del soldado: </label>
         <input type="text" name="nombre" required>
-        <input type="submit" value="Enviar">
+        <button class="btn waves-effect waves-light red darken-2" type="submit" value="Enviar">Submit
+            <i class="material-icons right">send</i>
+        </button>
     </form>
     <br><br>
-    <a href="/imperio/">Regresar al ejército</a>
+    <a href="/imperio/">Regresar a la lista de caballos</a>
 <%- include('includes/foot.ejs') %>

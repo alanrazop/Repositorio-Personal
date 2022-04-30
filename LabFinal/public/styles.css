@@ -40,3 +40,9 @@
   background-color: #008CBA;
   color: white;
 }
+
+a:link {
+  color: red;
+  background-color: transparent;
+  text-decoration: none;
+}
