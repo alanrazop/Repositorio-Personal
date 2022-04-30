@@ -4,6 +4,8 @@ const Imperio = require('../models/imperio');
 
 exports.listar = (request, response, next) => {
     console.log(request.body);
+    console.log(request.get('Cookie').split('=')[1]);
+    console.log(request.cookies);
     response.render('lista_imperial', {soldados: Imperio.fetchAll() });
 };
 exports.get_nuevo = (request, response, next) => {
@@ -17,5 +19,7 @@ exports.post_nuevo = (request, response, next) => {
     console.log(request.body);
     const soldado = new Imperio(request.body.nombre);
     soldado.save();
+    response.setHeader('Set-Cookie', 'ultimo_soldado='+ soldado.nombre);
+
     response.redirect('/imperio/');
 };

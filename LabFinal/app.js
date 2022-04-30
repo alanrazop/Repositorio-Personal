@@ -3,6 +3,14 @@ const bodyParser = require('body-parser');
 const app = express();
 const rutas_imperio = require('./routes/imperio.routes');
 const path = require('path');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+
+app.use(session({
+    secret: 'lknaeañco3pom4ñi3jrcñlawjomxñi3iq3mc4rsejf0438cnf83h4cknh43ui', 
+    resave: false, //La sesión no se guardará en cada petición, sino sólo se guardará si algo cambió 
+    saveUninitialized: false, //Asegura que no se guarde una sesión para una petición que no lo necesita
+}));
 
 app.use(bodyParser.urlencoded({extended: false}));
 
