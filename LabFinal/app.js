@@ -1,5 +1,20 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
+
+
+app.use(bodyParser.urlencoded({extended: false}));
+
+
+
+app.use('/desconocido', (request, response, next) => {
+    response.send('Has entrado a una ruta desconocida :0'); 
+});
+
+app.use('/adios', (request, response, next) => {
+    console.log(request.body);
+    response.send('¡Nos vemos! Esto es una despediada :('); 
+});
 
 //Middleware
 app.use((request, response, next) => {
@@ -9,7 +24,7 @@ app.use((request, response, next) => {
 
 app.use((request, response, next) => {
     console.log('Otro middleware!');
-    response.send('¡Hola mundo!'); //Manda la respuesta
+    response.send('¡Bienvenidos al portal de Alan!'); //Manda la respuesta
 });
 
 app.listen(3000);
