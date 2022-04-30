@@ -1,0 +1,19 @@
+{
+  "name": "laboratoriofinal",
+  "version": "1.0.0",
+  "description": "Laboratorio final de la materia TC2005B",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alanrazop/Repositorio-Personal.git"
+  },
+  "author": "Alan Razo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alanrazop/Repositorio-Personal/issues"
+  },
+  "homepage": "https://github.com/alanrazop/Repositorio-Personal#readme"
+}
