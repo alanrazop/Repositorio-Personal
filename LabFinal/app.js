@@ -24,8 +24,9 @@ app.set('views', 'views');
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Accede al directorio de rutas (express)
-app.use('/imperio', rutas_imperio);
 app.use('/users', rutas_usuarios);
+app.use('/imperio', rutas_imperio);
+
 
 //Ruta nueva
 app.use('/desconocido', (request, response, next) => {
@@ -49,4 +50,4 @@ app.use((request, response, next) => {
     response.send('404 La página que buscas no existe'); //Manda la respuesta
 });
 
-app.listen(3000);
+app.listen(3001);
