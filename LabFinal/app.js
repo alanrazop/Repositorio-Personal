@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const rutas_imperio = require('./routes/imperio.routes');
 
 
 app.use(bodyParser.urlencoded({extended: false}));
 
-
+app.use('/imperio', rutas_imperio);
 
 app.use('/desconocido', (request, response, next) => {
     response.send('Has entrado a una ruta desconocida :0'); 
