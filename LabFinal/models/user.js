@@ -1,20 +1,30 @@
-const usuarios = [];
+const db = require('../util/database');
+const bcrypt = require('bcryptjs');
 
 module.exports = class User {
 
-    constructor(nuevo_usario, nuevo_password, nuevo_nombre) {
-        this.usuario = nuevo_usario;
+    //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
+    constructor(nuevo_usuario, nuevo_password, nuevo_nombre) {
+        this.usuario = nuevo_usuario;
         this.password = nuevo_password;
         this.nombre = nuevo_nombre;
     }
 
+    //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        usuarios.push(this);
-        console.log(usuarios);
+        return bcrypt.hash(this.password, 12)
+            .then( (password_cifrado) => {
+                return db.execute(
+                    'INSERT INTO usuarios (username, password, nombre) VALUES (?,?,?)', 
+                    [this.usuario, password_cifrado, this.nombre]);
+            }).catch((err) => {
+                console.log(err);
+            }); 
     }
 
-    static login(usuario, password) {
-        return true;
+    static findOne(usuario) {
+        return db.execute(
+            'SELECT * FROM usuarios WHERE username=?', [usuario]);
     }
 
 }

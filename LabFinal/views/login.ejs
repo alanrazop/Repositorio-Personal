@@ -4,6 +4,7 @@
         <h3>Un nuevo imperio</h3>
         <p>Inicia sesión:</p>
         <form action="/users/login" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <label for="nombre">Nombre de usuario: </label>
             <input type="text" name="nombre" required>
             <label for="password">Constraseña: </label>
@@ -12,5 +13,7 @@
                 <i class="material-icons right">send</i>
             </button>
         </form>
+        <br/>
+        <a href="/users/signup/">Crea una nueva cuenta</a>
     </br><br><br><br><br>
 <%- include('includes/foot.ejs') %>
