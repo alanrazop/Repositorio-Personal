@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const rutas_imperio = require('./routes/imperio.routes');
+const rutas_usuarios = require('./routes/auth.routes');
 const path = require('path');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
@@ -13,6 +14,7 @@ app.use(session({
 }));
 
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
 
 //Varianle de configración de express (ejs)
 app.set('view engine', 'ejs');
@@ -23,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Accede al directorio de rutas (express)
 app.use('/imperio', rutas_imperio);
+app.use('/users', rutas_usuarios);
 
 //Ruta nueva
 app.use('/desconocido', (request, response, next) => {

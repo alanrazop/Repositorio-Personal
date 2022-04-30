@@ -1,0 +1,16 @@
+<%- include('includes/head.ejs') %>
+    <h1>Bienvenido a la Orden Final</h1>
+    <main>
+        <h3>Un nuevo imperio</h3>
+        <p>Inicia sesión:</p>
+        <form action="/users/login" method="POST">
+            <label for="nombre">Nombre de usuario: </label>
+            <input type="text" name="nombre" required>
+            <label for="password">Constraseña: </label>
+            <input type="password" name="password" required>
+            <button class="btn waves-effect waves-light red darken-2" type="submit" value="Enviar">Enviar
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+    </br><br><br><br><br>
+<%- include('includes/foot.ejs') %>
