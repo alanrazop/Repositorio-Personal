@@ -4,6 +4,7 @@
   "description": "Laboratorio final de la materia TC2005B",
   "main": "app.js",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,19 @@
   "bugs": {
     "url": "https://github.com/alanrazop/Repositorio-Personal/issues"
   },
-  "homepage": "https://github.com/alanrazop/Repositorio-Personal#readme"
+  "homepage": "https://github.com/alanrazop/Repositorio-Personal#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
+    "ejs": "^3.1.7",
+    "express": "^4.18.1",
+    "express-session": "^1.17.2",
+    "multer": "^1.4.4",
+    "mysql2": "^2.3.3"
+  }
 }
