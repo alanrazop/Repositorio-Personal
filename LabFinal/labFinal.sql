@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 01-05-2022 a las 01:25:31
+-- Tiempo de generación: 01-05-2022 a las 03:00:37
 -- Versión del servidor: 5.7.34
 -- Versión de PHP: 8.0.8
 
@@ -33,15 +33,15 @@ CREATE TABLE `soldados` (
   `descripcion` varchar(400) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
   `imagen` varchar(400) CHARACTER SET utf8 COLLATE utf8_spanish2_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `dueño_id` varchar(40) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `soldados`
 --
 
-INSERT INTO `soldados` (`id`, `nombre`, `descripcion`, `imagen`, `created_at`, `dueño_id`) VALUES
-(1, 'Cody', 'Sirviendo desde el 30-04-22', '1651366484093-sith_trooper.png', '2022-05-01 01:21:08', 'AlanRazo');
+INSERT INTO `soldados` (`id`, `nombre`, `descripcion`, `imagen`, `created_at`) VALUES
+(1, 'Alan', 'El primer soldado', NULL, '2022-05-01 02:52:17'),
+(2, 'Alan', 'El primer soldado', NULL, '2022-05-01 02:52:24');
 
 -- --------------------------------------------------------
 
@@ -62,7 +62,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`username`, `password`, `nombre`) VALUES
 ('fernando', '$2a$12$5KxojPMlVqe9RlKl9XdFKOC7H35kUL1z7Qs35tKNqsQT2d0mpRtcC', 'Fernando'),
 ('AlanRazo', 'mockingjay', 'Alan'),
-('AlanRazo', 'mockingjay', 'Alan');
+('AlanRazo', 'mockingjay', 'Alan'),
+('alanrazop', '$2a$12$1jiJ6koq0RaNp0iFTWgfU.97mYflMA42FfRM9IBTE.w7ixGksRb7K', 'Alan');
 
 --
 -- Índices para tablas volcadas
@@ -82,7 +83,7 @@ ALTER TABLE `soldados`
 -- AUTO_INCREMENT de la tabla `soldados`
 --
 ALTER TABLE `soldados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

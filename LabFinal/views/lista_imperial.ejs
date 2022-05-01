@@ -2,19 +2,20 @@
     <h1>Bienvenido a la Orden Final</h1>
     <main>
         <h3>Este es el principio del fin...</h3>
+        <label for="buscar">Buscar soldado:</label>
+        <input type="text" id="buscar" name="buscar">
         <p>Los soldados de tu imperio:</p>
-        <div class="row">
+        <div class="row" id="busqueda_ajax">
         <% if (soldados.length > 0) { %>
                 <% for (let soldado of soldados) { %>
                     <div class="col s12 m4 l3">
-                        <div class="card small">
+                        <div class="card small red darken-2">
                             <div class="card-image waves-effect waves-block waves-light">
                             <img class="activator" src="<%= soldado.imagen %>">
                             </div>
                             <div class="card-content">
-                            <span class="card-title activator grey-text text-darken-4"><%= soldado.nombre %><i class="material-icons right">more_vert
-                            </i></span>
-                            <p><span id="elemento_ajax" data-duenio="<%= soldado.duenio_id %>"> Dueño: <%= soldado.duenio_id %></span></p>
+                            <span class="card-title activator white-text text-darken-4"><%= soldado.nombre %><i class="material-icons right ">add</i></span>
+                            <p class="white-text">Soldado de la Orden Final</p>
                             </div>
                             <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4"><%= soldado.nombre %><i class="material-icons right">close</i></span>
@@ -27,6 +28,10 @@
             <h3>No existen soldados</h3>
         <% } %>   
         </div>
+
+        <button id="muestra_foto">Ver foto de Alan</button>
+            <div id="foto_alan"></div>
+
         <% if (ultimo_soldado != '') { %>
             <br>
             <p>El último soldado agregado fue: <%= ultimo_soldado %></p>
@@ -34,4 +39,99 @@
         <a href="/imperio/nuevo">
             <i class="material-icons">add_circle</i> Agrega un nuevo sith trooper</a>
     </main>
+
+    <script>
+        const busqueda_asincrona = () => {
+            const valor_busqueda = document.getElementById('buscar').value;
+        
+            //funcion que manda la peticion asincrona
+            fetch('/imperio/buscar'+valor_busqueda, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }).then(result => {
+                return result.json();//regresa otra promesa
+            }).then(data => {
+                console.log(data);
+                //modificamos el dom de nuestra pagina de acuerdo a los datos de la segunda promesa
+                let respuesta = '';
+                for (let soldado of data){
+                    respuesta+=
+                    '<div class="col s12 m4 l3">'+
+                           '<div class="card small">'+
+                                '<div class="card-image waves-effect waves-block waves-light">'+
+                                '<img class="activator" src="'+ soldado.imagen +'">'+
+                                '</div>'+
+                                '<div class="card-content">'+
+                                '<span class="card-title activator grey-text text-darken-4">'+ soldado.nombre +'<i class="material-icons right">more_vert</i></span>'+
+                                '</div>'+
+                                '<div class="card-reveal">'+
+                                '<span class="card-title grey-text text-darken-4">'+ soldado.nombre +'<i class="material-icons right">close</i></span>'+
+                                '<p>'+ soldado.descripcion +'</p>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>';
+                }
+        
+                document.getElementById('busqueda_ajax').innerHTML = respuesta;
+                document.querySelectorAll('#elemento_ajax').forEach((e) => {
+                    e.addEventListener('click', accion_asicncrona);
+                });
+            }).catch(err => {
+                console.log(err);
+            });   
+        };
+        
+        document.getElementById("buscar").onkeyup = busqueda_asincrona;
+        
+        const accion_asincrona = (e) => {
+            console.log(e.target.dataset.nombre);
+            // const mensaje = document.getElementById('mensaje').value;
+            // //El token de protección CSRF
+            // const csrf = document.getElementById('_csrf').value;
+        
+            //función que manda la petición asíncrona
+            fetch('/users/view/'+e.target.dataset.nombre, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+            //         'csrf-token': csrf
+                }
+            //     body: JSON.stringify(data)
+            }).then(result => {
+                 return result.json(); //Regresa otra promesa
+            }).then(data => {
+                console.log(data);
+                //Modificamos el DOM de nuestra página de acuerdo a los datos de la segunda promesa
+                document.getElementById("respuesta_ajax").innerHTML = '<div class="row"><div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">El dueño es: '
+                    + data.user.nombre +
+                    '</span></div></div></div></div>';
+            }).catch(err => {
+                console.log(err);
+            });
+        };
+        
+        document.querySelectorAll('#elemento_ajax').forEach((e)=> {
+            e.addEventListener('click', accion_asincrona);
+        });    
+
+        let boton_foto = document.getElementById("muestra_foto");
+
+        function muestra_foto_alan () {
+            let div_foto_alan = document.getElementById("foto_alan");
+            div_foto_alan.innerHTML = '<img src="https://avatars.githubusercontent.com/u/83654918?v=4" alt="imagen de Alan">';
+            boton_foto.onclick=limpiar_foto;
+        }
+
+        function limpiar_foto() {
+            let div_foto_alan = document.getElementById("foto_alan");
+            div_foto_alan.innerHTML = '';
+            boton_foto.onclick = muestra_foto_alan;
+        }
+
+        boton_foto.onclick = muestra_foto_alan;
+        
+        
+        </script>
 <%- include('includes/foot.ejs') %>

@@ -60,6 +60,15 @@ exports.logout =  (request, response, next) => {
     });
 };
 
+exports.get_view = (request, response, next) => {
+    console.log(request.body);
+    User.findOne(request.params.id).then(([rows, fieldData])=>{
+        response.status(200).json({user: rows[0]});
+    }).catch((error)=>{
+        console.log(error);
+    });
+};
+
 exports.root = (request, response, next) => {
     response.redirect('/users/login'); 
 };

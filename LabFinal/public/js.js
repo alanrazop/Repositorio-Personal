@@ -56,7 +56,7 @@ let boton_foto = document.getElementById("muestra_foto");
 
 function muestra_foto_alan () {
     let div_foto_alan = document.getElementById("foto_alan");
-    div_foto_alan.innerHTML = '<img src="https://media-exp1.licdn.com/dms/image/C4E03AQFnxdJtq7F6aA/profile-displayphoto-shrink_200_200/0/1628951512135?e=1654128000&v=beta&t=Mebzl28KQW9zD24S48OJUz8Rv0cRl_H9FjtWPe3Q1sM" alt="imagen de Alan">';
+    div_foto_alan.innerHTML = '<img src="https://avatars.githubusercontent.com/u/83654918?v=4" alt="imagen de Alan">';
     boton_foto.onclick=limpiar_foto;
 }
 

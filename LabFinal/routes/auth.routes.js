@@ -13,5 +13,8 @@ router.get('/signup', usersController.get_signup);
 
 router.post('/signup', usersController.post_signup);
 
+router.get('/view/:id', usersController.get_view);
+
+router.get('/', isAuth, usersController.root);
 
 module.exports = router;
