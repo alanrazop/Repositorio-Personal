@@ -1,0 +1,23 @@
+<%- include('includes/head.ejs') %>
+    <h1>¡Ingresa un nuevo soldado para el nuevo imperio!</h1>
+    <main>
+        <h2>La Orden Final</h2>
+        <p><%= nombre %>, ingresa a un nuevo soldado:</p>
+        <form action="/imperio/nuevo" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <label for="nombre">Nombre del nuevo soldado</label>
+            <input type="text" name="nombre" required>
+            <label for="descripcion">Descripción</label>
+            <input type="text" name="descripcion" required>
+            <br><br>
+            <label for="imagen">Imagen</label>
+            <input type="file" name="imagen" required>
+            <br><br>
+            <button class="btn waves-effect waves-light red darken-2" type="submit" value="Enviar">Enviar
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+        <br><br>
+        <a href="/imperio/">Regresar a la lista de soldados</a>
+    </br>
+<%- include('includes/foot.ejs') %>
