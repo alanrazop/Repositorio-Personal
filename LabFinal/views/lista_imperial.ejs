@@ -9,16 +9,16 @@
                     <div class="col s12 m4 l3">
                         <div class="card small">
                             <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="https://media.fortniteapi.io/images/4ebf56a20d74e89398c380003eca1bf3/transparent.png">
+                            <img class="activator" src="<%= soldado.imagen %>">
                             </div>
                             <div class="card-content">
                             <span class="card-title activator grey-text text-darken-4"><%= soldado.nombre %><i class="material-icons right">more_vert
                             </i></span>
-                            <p><a href="#">This is a link</a></p>
+                            <p><span id="elemento_ajax" data-duenio="<%= soldado.duenio_id %>"> Dueño: <%= soldado.duenio_id %></span></p>
                             </div>
                             <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4"><%= soldado.nombre %><i class="material-icons right">close</i></span>
-                            <p>Hola.</p>
+                            <p><%= soldado.descripcion %></p>
                             </div>
                         </div>
                     </div>

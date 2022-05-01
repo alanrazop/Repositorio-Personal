@@ -3,12 +3,28 @@
     <main>
     <h2>La Orden Final</h2>
     <p><%= nombre %>, ingresa a un nuevo soldado:</p>
-    <form action="/imperio/nuevo" method="POST">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+    <form action="/imperio/nuevo" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
         <label for="nombre">Nombre del soldado: </label>
         <input type="text" name="nombre" required>
-        <input type="submit" value="Enviar">
+        <label for="descripcion">Descripción</label>
+        <input type="text" name="descripcion" required>
+        <br><br>
+        <label for="imagen">Imagen</label>
+        <input type="file" name="imagen" required>
+        <div class="input-field col s12">
+            <select id="duenio_id" name="duenio_id">
+                <option value="" disabled selected>Selecciona el dueño del soldados</option>
+                <% for (let duenio of duenios) { %>
+                    <option name="duenio_id" value="<%= duenio.username %>"><%= duenio.nombre %></option>
+                <% } %>
+            </select>
+            <label>Materialize Select</label>
+          </div>
+          <button class="btn waves-effect waves-light red darken-2" type="submit" value="Enviar">Submit
+            <i class="material-icons right">send</i>
+          </button>
     </form>
     <br><br>
-    <a href="/imperio/">Regresar a la lista de caballos</a>
+    <a href="/imperio/">Regresar a la lista de soldados</a>
 <%- include('includes/foot.ejs') %>

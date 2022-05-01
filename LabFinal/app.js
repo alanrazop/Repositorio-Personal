@@ -6,6 +6,7 @@ const path = require('path');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
+const multer = require('multer');
 
 const app = express();
 
@@ -21,14 +22,28 @@ app.use(session({
     saveUninitialized: false, //Asegura que no se guarde una sesión para una petición que no lo necesita
 }));
 
-
+//Accede a una carpeta de archivos estáticos (css)
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
+
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+//fileStorage: Es nuestra constante de configuración para manejar el almacenamiento
+const fileStorage = multer.diskStorage({
+    destination: (request, file, callback) => {
+        //'uploads': Es el directorio del servidor donde se subirán los archivos 
+        callback(null, 'uploads');
+    },
+    filename: (request, file, callback) => {
+        //aquí configuramos el nombre que queremos que tenga el archivo en el servidor, 
+        //para que no haya problema si se suben 2 archivos con el mismo nombre concatenamos el timestamp
+        callback(null, new Date().getTime() + '-' + file.originalname);
+    },
+});
+app.use(multer({ storage: fileStorage }).single('imagen')); 
+
 app.use(cookieParser());
-
-
 
 app.use(csrfProtection);
 app.use((request, response, next) => {
@@ -36,15 +51,9 @@ app.use((request, response, next) => {
     next();
 });
 
-
-
-//Accede a una carpeta de archivos estáticos (css)
-
-
 //Accede al directorio de rutas (express)
 app.use('/users', rutas_usuarios);
 app.use('/imperio', rutas_imperio);
-
 
 //Ruta nueva
 app.use('/desconocido', (request, response, next) => {

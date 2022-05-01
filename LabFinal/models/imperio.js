@@ -11,9 +11,9 @@ module.exports = class Imperio {
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        return db.execute('INSERT INTO soldados (nombre, descripcion, imagen, duenio_id) VALUES (?, ?, ?, ?)',
-            [this.nombre, this.descripcion, this.imagen, this.duenio_id]
-        );
+        return db.execute(
+        'INSERT INTO soldados(nombre, descripcion, imagen, duenio_id) VALUES (?,?,?,?)',
+        [this.nombre, this.descripcion, this.imagen, this.duenio_id]);
     }
 
     //Este método servirá para devolver los objetos del almacenamiento persistente.

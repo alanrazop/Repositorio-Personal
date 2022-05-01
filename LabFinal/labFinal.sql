@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 30-04-2022 a las 23:26:14
+-- Tiempo de generación: 01-05-2022 a las 01:25:31
 -- Versión del servidor: 5.7.34
 -- Versión de PHP: 8.0.8
 
@@ -36,6 +36,13 @@ CREATE TABLE `soldados` (
   `dueño_id` varchar(40) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `soldados`
+--
+
+INSERT INTO `soldados` (`id`, `nombre`, `descripcion`, `imagen`, `created_at`, `dueño_id`) VALUES
+(1, 'Cody', 'Sirviendo desde el 30-04-22', '1651366484093-sith_trooper.png', '2022-05-01 01:21:08', 'AlanRazo');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +54,15 @@ CREATE TABLE `usuarios` (
   `password` varchar(400) NOT NULL,
   `nombre` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`username`, `password`, `nombre`) VALUES
+('fernando', '$2a$12$5KxojPMlVqe9RlKl9XdFKOC7H35kUL1z7Qs35tKNqsQT2d0mpRtcC', 'Fernando'),
+('AlanRazo', 'mockingjay', 'Alan'),
+('AlanRazo', 'mockingjay', 'Alan');
 
 --
 -- Índices para tablas volcadas
@@ -66,7 +82,7 @@ ALTER TABLE `soldados`
 -- AUTO_INCREMENT de la tabla `soldados`
 --
 ALTER TABLE `soldados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

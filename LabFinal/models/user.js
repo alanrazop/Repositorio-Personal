@@ -22,9 +22,13 @@ module.exports = class User {
             }); 
     }
 
-    static findOne(usuario) {
+    static fetchAll() {
+        return db.execute('SELECT * FROM usuarios');
+    }
+
+    static findOne(username) {
         return db.execute(
-            'SELECT * FROM usuarios WHERE username=?', [usuario]);
+            'SELECT * FROM usuarios WHERE username=?', [username]);
     }
 
 }
