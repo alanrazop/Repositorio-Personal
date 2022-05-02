@@ -12,7 +12,7 @@
     </head>
     <nav>
       <div class="nav-wrapper red darken-2">
-        <a href="#arriba" class="brand-logo">Alan's personal website</a>
+        <a href="#arriba" class="brand-logo"><i class="material-icons">explore</i>Alan's personal website</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li><a class="waves-effect waves-light btn  light-blue darken-1" href="https://github.com/alanrazop/Repositorio-Personal"><i class="material-icons right">folder_special</i>Repositorio Personal</a></li>
         </ul>
@@ -21,7 +21,7 @@
     <body>
       <div class="container">
         <h1 align="center" name="arriba">¡Bienvenidos a mi sitio web!</h1> <!-- H1 a H6 son encabezados (heading)-->
-        <h3 align="center"><a href="/users/login/">Laboratorio Final</a></h3>
+        <h4 align="center"><a href="/users/login/">Laboratorio Final <i class="material-icons">code</i></a></h4>
         <a href="https://twitter.com/intent/tweet?button_hashtag=LoveProgramming&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #LoveProgramming</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <p>Hola, soy <strong>Alan Razo</strong> y estudio Ingeniería en Tecnologías Computacionales (ITC) en el Tecnológico de Monterrey. 
             Soy muy apasionado por el arte y la tecnología, soy una persona sociable y me encanta salir de viaje, explorar lugares nuevos, enfrentar nuevos retos. </p>
@@ -186,14 +186,18 @@
         <article>
           <h2>Preguntas bases de datos:</h2>
           <strong>¿Qué ventajas tiene escribir el código SQL únicamente en la capa del modelo?</strong>
-          <p></p>
+          <p>Tiene una única interaccion con la base de datos y a través del controlador se puede mandar de una manera muy eficiente sin
+            tener que recurrir a otras páginas, además que en modelos solo abstrae la información del modelo particular.
+          </p>
           <strong>¿Qué es SQL injection y cómo se puede prevenir?</strong>
-          <p></p>
+          <p>Es una técnica de inyección de código que podría destruir la base de datos. 
+            Es la colocación de código malicioso en declaraciones SQL, a través de la entrada de una 
+            página web. Se puede prevenir con filtrar caracteres especiales o verificar consultas automaticamente.</p>
         </article>
         <article>
           <h2>Preguntas Autentificación:</h2>
           <strong>¿Qué otras formas de autentificación existen?</strong>
-          <p></p>
+          <p>Token, Contraseña, One-Time Password, información biométrica, etc.</p>
         </article>
         <article>
           <h2>Preguntas RBAC</h2>
@@ -204,31 +208,42 @@
         <article>
           <h2>Preguntas AJAX</h2>
           <strong>¿Qué importancia tiene AJAX en el desarrollo de RIA's (Rich Internet Applications?</strong>
-          <p></p>
+          <p>Su utilidad es que incrementa el rendimiento, velocidad y usabilidad de aplicaciones web, reduce 
+            el tráfico del servidor dentro de las peticiones y minimiza el el consumo del tiempo en ambas respuestas. 
+          </p>
           <strong>¿Qué implicaciones de seguridad tiene AJAX? ¿Dónde se deben hacer las validaciones de seguridad, del lado del cliente o del lado del servidor?</strong>
-          <p></p>
+          <p>Sólo puede acceder a la información del servidor web que sirve las páginas. No es posible obtener información de otros servidores con Ajax.
+            Se deben hacer las validaciones del lado del servidor.
+          </p>
           <strong>¿Qué es JSON?</strong>
-          <p></p>
+          <p>JavaScript Object Notation. Es un formato ligero para almacenar y transportar datos. Se usa a menudo cuando los datos se envían desde un servidor a una página web y es autodescriptivo.</p>
         </article>
         <article>
           <h2>Preguntas Servicios Web </h2>
           <strong>¿Qué ventajas y desventajas tiene la integración de tus aplicaciones web con servicios web desarrollados por terceros?</strong>
-          <p></p>
+          <p>Las ventajas son que s epueden acceder a herramientas de otros para poder desplegar información o contenido relevante 
+            en tu página. Las desventjas son que no siempre pueden funcionar adecuadamente y puede que contengan información maliciosa.
+          </p>
         </article>
         <article>
           <h2>Preguntas Accesibilidad</h2>
           <strong>¿Por qué es importante la accesibilidad?</strong>
-          <p>Para que cualquier tipo de personas </p>
+          <p>Para que cualquier tipo de personas con algún tipo de discapacidad pueda reconocer y comprender de una manera muy facil y óptima
+            el funcionamiento de la página y sus componentes. </p>
           <strong>¿Cuáles son los lineamientos de accesibilidad que consideras más importantes? ¿Por qué?</strong>
-          <p></p>
+          <p>El contraste del color porque se tiene que diferenciar del resto de la página y el uso de placeholders
+            como labels para los campos de información porque no puede saberse con exactitud para que se usan.
+          </p>
           <strong>Describe 3 cambios que harás en tu proyecto para hacerlo más accesible.</strong>
-          <p></p>
+          <p>1. Incrementar el contraste de los botones. 2. Marcar con nombres los campos vacíos. 3. Implementar tags para gráficas.</p>
         </article>
-
         <article>
             <h2>Bibliografías:</h2>
+            <p>https://www.freecodecamp.org/news/http-and-everything-you-need-to-know-about-it/</p>
             <p>https://www.geeksforgeeks.org/difference-between-java-and-javascript/</p>
-            <p></p>
+            <p>https://www.evidian.com/pdf/wp-strongauth-es.pdf</p>
+            <p>https://www.educba.com/what-is-ajax/</p>
+
         </article>
 
         <button class="button button2" href="#arriba">Volver al inicio</button>
